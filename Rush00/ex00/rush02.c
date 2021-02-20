@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rush01.c                                           :+:      :+:    :+:   */
+/*   rush02.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjeong <jjeong@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: dokwon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/20 11:56:37 by jjeong            #+#    #+#             */
-/*   Updated: 2021/02/20 13:50:15 by jjeong           ###   ########.fr       */
+/*   Created: 2021/02/20 13:25:08 by dokwon            #+#    #+#             */
+/*   Updated: 2021/02/20 13:34:33 by dokwon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ void	rush(int x, int y)
 		now_x = 1;
 		while (now_x <= x)
 		{
-			if (now_x == 1 && now_y == 1)
-				ft_putchar('/');
-			else if (now_x != 1 && now_y != 1 && now_x == x && now_y == y)
-				ft_putchar('/');
-			else if ((now_x == 1 && now_y == y) || (now_y == 1 && now_x == x))
-				ft_putchar('\\');
-			else if (now_x == 1 || now_x == x || now_y == 1 || now_y == y)
-				ft_putchar('*');
+			if ((now_x == 1 && now_y == 1) || (now_x == x && now_y == 1))
+				ft_putchar('A');
+			else if ((now_x == x && now_y == y) || (now_x == 1 && now_y == y))
+				ft_putchar('C');
+			else if ((now_x == x || now_x == 1) || (now_y == 1 || now_y == y))
+				ft_putchar('B');
 			else
 				ft_putchar(' ');
 			now_x++;

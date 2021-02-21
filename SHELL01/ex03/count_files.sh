@@ -1,1 +1,1 @@
-find . -type f | wc -l | tr -d ' '
+find . | wc -l | tr -d ' '

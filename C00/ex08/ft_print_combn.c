@@ -5,41 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/21 23:18:43 by seehan            #+#    #+#             */
-/*   Updated: 2021/02/22 16:47:15 by seehan           ###   ########.fr       */
+/*   Created: 2021/02/24 14:34:09 by seehan            #+#    #+#             */
+/*   Updated: 2021/02/24 17:00:32 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int g_len;
-char g_arr[10];
+char	g_data[10];
+int		g_r;
 
-void	ft_back(int pos, int m)
+void	ft_print_num(int start, int idx)
 {
-	int j;
+	int i;
 
-	if (m == g_len)
+	if (idx == g_r)
 	{
-		write(1, g_arr, g_len);
+		write(1, g_data, g_r);
 		write(1, ", ", 2);
 		return ;
 	}
-	if (pos == 9)
+	if (start == 9)
 		return ;
-	j = pos;
-	while (++j <= 10 - g_len + m)
+	i = start;
+	while (++i <= 10 - g_r + idx)
 	{
-		g_arr[m] = '0' + j;
-		ft_back(j, m + 1);
+		g_data[idx] = '0' + i;
+		ft_print_num(i, idx + 1);
 	}
 }
 
-void	ft_last(int i)
+void	ft_print_last(int i)
 {
 	char c;
-
-	while (i <= 9)
+	
+	while (i < 10)
 	{
 		c = '0' + i++;
 		write(1, &c, 1);
@@ -51,11 +51,18 @@ void	ft_print_combn(int n)
 	int i;
 
 	i = 0;
-	g_len = n;
+	g_r = n;
 	while (i < 10 - n)
 	{
-		g_arr[0] = '0' + i;
-		ft_back(i++, 1);
+		g_data[0] = '0' + i;
+		ft_print_num(i, 1);
+		i++;
 	}
-	ft_last(i);
+	ft_print_last(i);
+}
+
+int		main(void)
+{
+	ft_print_combn(4);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 23:21:39 by seehan            #+#    #+#             */
-/*   Updated: 2021/02/25 20:44:19 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/07 17:19:32 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 	while (src[i] && i < size - 1)
 	{
 		dest[i] = src[i];
-		i++;
+		++i;
 	}
 	dest[i] = '\0';
-	return (size - 1);
+	while (src[i])
+		++i;	
+	return (i);
 }

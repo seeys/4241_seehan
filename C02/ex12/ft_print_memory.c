@@ -6,7 +6,7 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 00:50:53 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/07 12:57:34 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/07 17:22:16 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_put_str(unsigned char *str)
 	i = 0;
 	while (i < 16 && str[i])
 	{
-		if (!((str[i] >= 0 && str[i] < 32) || str[i] == 127))
+		if (!((str[i] >= 0 && str[i] <= 32) || str[i] == 127))
 			write(1, &str[i], 1);
 		else
 			write(1, ".", 1);

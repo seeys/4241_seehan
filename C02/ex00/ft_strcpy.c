@@ -6,13 +6,20 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:51:58 by seehan            #+#    #+#             */
-/*   Updated: 2021/02/25 20:37:05 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/07 17:03:57 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strcpy(char *dest, char *src)
 {
-	while (*src != '\0')
-		*dest++ = *src++;
+	int i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		++i;
+	}
+	dest[i] = 0;
 	return (dest);
 }

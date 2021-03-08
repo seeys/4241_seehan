@@ -6,29 +6,30 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 17:22:29 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/06 17:23:55 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/08 15:55:48 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strstr(char *str, char *to_find)
 {
-	char *i;
-	char *j;
+	int i;
+	int j;
 
-	if (!*to_find)
+	if (to_find[0] == '\0')
 		return (str);
-	while (*str)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		i = str;
-		j = to_find;
-		while (*j && *i == *j)
+		j = 0;
+		while (to_find[j] != '\0')
 		{
-			i++;
+			if (str[i + j] != to_find[j])
+				break ;
 			j++;
 		}
-		if (*j == 0)
-			return (str);
-		str++;
+		if (to_find[j] == '\0')
+			return (str + i);
+		i++;
 	}
 	return (0);
 }

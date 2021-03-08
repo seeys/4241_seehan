@@ -6,18 +6,19 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 17:59:21 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/06 18:18:44 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/08 17:33:44 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
 
-void	ft_putchar(char c)
+void			ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-int		ft_strlen(char *str)
+unsigned int	ft_strlen(char *str)
 {
 	int i;
 
@@ -27,7 +28,7 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-int		base_is_invalid(char *base)
+int				base_is_invalid(char *base)
 {
 	int i;
 	int m;
@@ -48,25 +49,38 @@ int		base_is_invalid(char *base)
 	return (0);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+void			ft_putnbr_base(int nbr, char *base)
 {
-	int value;
-	int len;
+	unsigned int value;
+	unsigned int len;
 
 	if (base_is_invalid(base))
 		return ;
 	len = ft_strlen(base);
-	value = nbr;
 	if (nbr < 0)
 	{
-		write(1, "-", 1);
-		value = -nbr;
-	}
-	if (value >= len)
-	{
-		ft_putnbr_base(value / len, base);
-		ft_putnbr_base(value % len, base);
+		ft_putchar('-');
+		value = -(unsigned int)nbr;
 	}
 	else
-		write(1, &base[value], 1);
+		value = nbr;
+	if (value < len)
+		ft_putchar(base[value]);
+	else
+	{
+		ft_putnbr_base(value / len, base);
+		ft_putchar(base[value % len]);
+	}
+}
+
+int main(void)
+{
+	ft_putnbr_base(123, "0123456789");
+	printf("\n");
+	ft_putnbr_base(-10, "01");
+	printf("\n");
+	ft_putnbr_base(-2147483648, "0123456789abcdef");
+	printf("\n");
+	ft_putnbr_base(0, "0123456789abcdef");
+	return (0);
 }

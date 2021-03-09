@@ -6,19 +6,25 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:58:03 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/06 17:20:35 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/08 00:37:24 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strcat(char *dest, char *src)
 {
-	char *p;
+	int i;
+	int j;
 
-	p = dest;
-	while (*dest)
-		dest++;
-	while (*src)
-		*dest++ = *src++;
-	*dest = '\0';
-	return (p);
+	i = 0;
+	j = 0;
+	while (dest[i])
+		i++;
+	while (src[j])
+	{
+		dest[i] = src[i];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

@@ -5,38 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/06 18:19:28 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/06 18:50:01 by seehan           ###   ########.fr       */
+/*   Created: 2021/03/08 23:38:21 by seehan            #+#    #+#             */
+/*   Updated: 2021/03/09 21:18:34 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
-int		ft_atoi_base(char *str, char *base)
+int		ft_recursive_power(int nb, int power)
 {
-	int sign;
-	int len;
-	int idx;
-	int result;
-
-	if (base_is_invalid(base))
+	if (power < 0)
 		return (0);
-	sign = 1;
-	while (is_space(*str))
-		str++;
-	while (*str == '-' || *str == '+')
+	if (power == 0)
+		return (1);
+	if (power == 1)
+		return (nb);
+	return (nb * (ft_recursive_power(nb, power - 1)));
+}
+
+int		str_check(char *str, char *base)
+{
+	int i;
+	int j;
+	int count;
+
+	i = 0;
+	j = 0;
+	count = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	while (str[i] == '-' || str[i] == '+')
+		i++;
+	while (base[j])
 	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
+		j = 0;
+		while (base[j] != str[i] && base[j] != '\0')
+			j++;
+		if (base[j] == str[i] && str[i] != '\0')
+			count = count + 1;
+		i++;
 	}
-	len = ft_strlen(base);
-	while (is_in_base(*str, base) && *str)
-	{
-		idx = is_in_base(*str++, base) - 1;
-		result = result * len + idx;
-	}
-	return (result * sign);
+	return (count);
 }
 
 int		ft_strlen(char *str)
@@ -49,47 +58,88 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-int		is_space(char c)
-{
-	int		i;
-	char	*spaces;
-
-	spaces = " \f\n\r\t\v";
-	i = -1;
-	while (spaces[++i] != '\0')
-		if (c == spaces[i])
-			return (1);
-	return (0);
-}
-
-int		is_in_base(char c, char *base)
-{
-	int	i;
-
-	i = -1;
-	while (base[++i] != '\0')
-		if (c == base[i])
-			return (i + 1);
-	return (0);
-}
-
-int		base_is_invalid(char *base)
+int		base_is_valid(char *base)
 {
 	int i;
-	int m;
+	int j;
 
 	i = 0;
+	if (ft_strlen(base) < 2)
+		return (0);
 	while (base[i])
 	{
+		if ((base[i] >= 9 && base[i] <= 13) || base[i] == 32)
+			return (0);
 		if (base[i] == '-' || base[i] == '+')
-			return (1);
-		m = i + 1;
-		while (base[m])
-			if (base[m++] == base[i])
-				return (1);
+			return (0);
 		i++;
 	}
-	if (i < 2)
-		return (1);
+	i = 0;
+	while (base[i + 1])
+	{
+		j = i + 1;
+		while (base[i] != base[j] && base[j] != '\0')
+			j++;
+		if (base[i] == base[j])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int		ft_atoi_base(char *str, char *base)
+{
+	int sign;
+	int i;
+	int j;
+	int len;
+	int value;
+
+	i = 0;
+	value = 0;
+	if (!base_is_valid(base))
+		return (0);
+	len = str_check(str, base);
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	while (str[i] == '+' || str[i] == '-')
+		sign = (str[i++] == '-') ? -sign : sign;
+	while (--len >= 0)
+	{
+		j = 0;
+		while (str[i] != base[j])
+			j++;
+		value = value + (ft_recursive_power(ft_strlen(base), len) * j);
+		i++;
+	}
+	return (value * sign);
+}
+
+int 	main(void)
+{
+	printf("==== 21 ft_atoi_base ====\n");
+	printf("Tesing ex21\n");
+	printf("Should return 0 in case of invalid arguments\n");
+	printf("%d\n", ft_atoi_base("15", ""));
+	printf("%d\n", ft_atoi_base("15", "1"));
+	printf("%d\n", ft_atoi_base("15", "144"));
+	printf("%d\n", ft_atoi_base("15", "14+35"));
+	printf("%d\n", ft_atoi_base("15", "145-09"));
+	printf("%d\n", ft_atoi_base("", "14509"));
+	printf("%d\n", ft_atoi_base("x15", "14509"));
+	printf("Should print number in correct radix\n");
+	printf("%d\n", ft_atoi_base("+1111", "01"));
+	printf("%d\n", ft_atoi_base("+15", "0123456789"));
+	printf("%d\n", ft_atoi_base("+F", "0123456789ABCDEF"));
+	printf("%d\n", ft_atoi_base("+vi", "fivte3n"));
+	printf("%d\n", ft_atoi_base("+84", "9876543210"));
+	printf("Should handle negative numbers\n");
+	printf("%d\n", ft_atoi_base("-1111", "01"));
+	printf("%d\n", ft_atoi_base("-15", "0123456789"));
+	printf("%d\n", ft_atoi_base("-F", "0123456789ABCDEF"));
+	printf("%d\n", ft_atoi_base("-ve", "fivte3n"));
+	printf("%d\n", ft_atoi_base("-84", "9876543210"));
+	printf("All tests passed for ex21\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:58:03 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/08 00:37:24 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/09 23:45:44 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strcat(char *dest, char *src)
 		i++;
 	while (src[j])
 	{
-		dest[i] = src[i];
+		dest[i] = src[j];
 		i++;
 		j++;
 	}

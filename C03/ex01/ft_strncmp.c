@@ -6,7 +6,7 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 12:23:11 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/08 00:31:11 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/09 23:45:09 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@ int		ft_strncmp(char *s1, char *s2, unsigned int n)
 	unsigned int i;
 
 	i = 0;
-	while (*s1 && *s2 && i < n)
+	while ((s1[i] || s2[i]) && i < n)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (*s1 - *s2);
+	return (0);
 }

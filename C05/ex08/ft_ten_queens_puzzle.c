@@ -6,11 +6,12 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 00:32:07 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/09 17:37:25 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/11 17:09:59 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
 void	ft_putchar(char c)
 {
@@ -39,7 +40,7 @@ int		ft_check(int *board, int c)
 	{
 		if (board[i] == board[c])
 			return (0);
-		if (board[c] == board[i] - (c - i) || board[i] == board[c] + (c - i))
+		if (board[i] == board[c] - (c - i) || board[i] == board[c] + (c - i))
 			return (0);
 		i++;
 	}
@@ -85,6 +86,6 @@ int		ft_ten_queens_puzzle(void)
 
 int main(void)
 {
-	ft_ten_queens_puzzle();
+	printf("\n%d", ft_ten_queens_puzzle());
 	return (0);
 }

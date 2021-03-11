@@ -6,7 +6,7 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 00:27:17 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/07 00:31:43 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/11 17:32:54 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_is_prime(int nb)
 	i = 2;
 	if (nb < 2)
 		return (0);
-	while (i < nb)
+	while (i <=  nb / i)
 	{
 		if (nb % i == 0)
 			return (0);

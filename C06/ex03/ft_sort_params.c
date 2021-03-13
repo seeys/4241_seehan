@@ -6,7 +6,7 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 13:36:24 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/09 18:34:19 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/13 21:35:28 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,25 @@ int		ft_strcmp(char *s1, char *s2)
 
 void	sort(int ac, char **av)
 {
-	int i;
-	char *tmp;
+	int		i;
+	int		j;
+	char	*tmp;
 
 	i = 1;
-	while (i < ac - 1)
+	while (i < ac)
 	{
-		if (ft_strcmp(av[i], av[i + 1]) > 0)
+		j = 1;
+		while (j + 1 < ac)
 		{
-			tmp = av[i];
-			av[i] = av[i + 1];
-			av[i + 1] = tmp;
+			if (ft_strcmp(av[j], av[j + 1]) > 0)
+			{
+				tmp = av[j];
+				av[j] = av[j + 1];
+				av[j + 1] = tmp;
+			}
+			j++;
 		}
-		else
-			i++;
+		i++;
 	}
 }
 

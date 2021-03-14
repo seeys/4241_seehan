@@ -6,14 +6,14 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 22:17:37 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/13 22:21:32 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/14 16:11:49 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_stock_str.h"
 
-int		ft_strlen(char *str)
+int					ft_strlen(char *str)
 {
 	int i;
 
@@ -23,12 +23,12 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strdup(char *src)
+char				*ft_strdup(char *src)
 {
 	char	*str;
 	int		i;
 
-	if(!(str = (char*)malloc(sizeof(char) * (ft_strlen(str) + 1))))
+	if (!(str = (char*)malloc(sizeof(char) * (ft_strlen(src) + 1))))
 		return (0);
 	i = 0;
 	while (src[i])
@@ -40,12 +40,13 @@ char	*ft_strdup(char *src)
 	return (str);
 }
 
-struct s_stock_str		*ft_strs_to_tab(int ac, char **av)
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
 	t_stock_str		*tab;
 	int				i;
 
-	if(!(tab = (t_stock_str*)malloc(sizeof(*tab) * (ac + 1))))
+	i = 0;
+	if (!(tab = (t_stock_str*)malloc(sizeof(*tab) * (ac + 1))))
 		return (0);
 	while (i < ac)
 	{
@@ -54,6 +55,8 @@ struct s_stock_str		*ft_strs_to_tab(int ac, char **av)
 		tab[i].copy = ft_strdup(av[i]);
 		i++;
 	}
-	tab[ac].str = 0;
+	tab[i].str = 0;
+	tab[i].size = 0;
+	tab[i].copy = 0;
 	return (tab);
 }

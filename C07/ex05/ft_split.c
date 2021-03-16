@@ -6,7 +6,7 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:00:55 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/14 14:56:36 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/16 14:18:29 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				ft_charset(char c, char *charset)
 	return (1);
 }
 
-int				ft_taillem(char *str, int i, char *charset)
+int				ft_len(char *str, int i, char *charset)
 {
 	int			j;
 
@@ -37,25 +37,25 @@ int				ft_taillem(char *str, int i, char *charset)
 	return (j);
 }
 
-int				ft_nbr_mots(char *str, char *charset)
+int				ft_nbr_tok(char *str, char *charset)
 {
 	int			i;
-	int			nbr_mots;
+	int			nbr_tok;
 
 	i = 0;
-	nbr_mots = 0;
+	nbr_tok = 0;
 	while (str[i] && charset[0])
 	{
 		while (ft_charset(str[i], charset) == 0)
 			i++;
 		if (str[i])
-			nbr_mots++;
+			nbr_tok++;
 		while (ft_charset(str[i], charset) == 1 && str[i] != '\0')
 			i++;
 	}
 	if (!(charset[0]))
 		return (1);
-	return (nbr_mots);
+	return (nbr_tok);
 }
 
 char			**ft_split(char *str, char *charset)
@@ -67,14 +67,14 @@ char			**ft_split(char *str, char *charset)
 
 	is = 0;
 	i = 0;
-	if (!(tab = malloc(sizeof(char*) * (ft_nbr_mots(str, charset) + 1))))
+	if (!(tab = malloc(sizeof(char*) * (ft_nbr_tok(str, charset) + 1))))
 		return (0);
-	while (i < ft_nbr_mots(str, charset) && str[0] != '\0')
+	while (i < ft_nbr_tok(str, charset) && str[0] != '\0')
 	{
 		j = 0;
 		while (ft_charset(str[is], charset) == 0 && str[is])
 			is++;
-		if (!(tab[i] = malloc(sizeof(char) * ft_taillem(str, is, charset) + 1)))
+		if (!(tab[i] = malloc(sizeof(char) * ft_len(str, is, charset) + 1)))
 			return (0);
 		while (ft_charset(str[is], charset) == 1 && str[is])
 			tab[i][j++] = str[is++];

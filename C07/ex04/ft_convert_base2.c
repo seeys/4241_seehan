@@ -6,22 +6,21 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:00:26 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/14 14:06:21 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/14 22:07:31 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_recursive_power(int nb, int power)
+unsigned int	ft_strlen(char *str)
 {
-	if (power < 0)
-		return (0);
-	if (power == 0)
-		return (1);
-	if (power == 1)
-		return (nb);
-	return (nb * (ft_recursive_power(nb, power - 1)));
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-int		str_check(char *str, char *base)
+int				str_check(char *str, char *base)
 {
 	int i;
 	int j;
@@ -46,7 +45,7 @@ int		str_check(char *str, char *base)
 	return (count);
 }
 
-int		base_is_valid(char *base)
+int				base_check(char *base)
 {
 	int i;
 	int j;
@@ -73,4 +72,30 @@ int		base_is_valid(char *base)
 		i++;
 	}
 	return (1);
+}
+
+char			*ft_putnbr_base(int nbr, char *base, int i, char *tab)
+{
+	unsigned int	value;
+
+	if (!base_check(base))
+		return (0);
+	if (nbr < 0)
+		value = -(unsigned int)nbr;
+	else
+		value = nbr;
+	if (value < ft_strlen(base))
+	{
+		tab[i] = (base[value]);
+		i++;
+		if (tab[i] == '-')
+			i++;
+		tab[i] = '\0';
+	}
+	else
+	{
+		tab[i] = base[value % ft_strlen(base)];
+		ft_putnbr_base(value / ft_strlen(base), base, ++i, tab);
+	}
+	return (tab);
 }

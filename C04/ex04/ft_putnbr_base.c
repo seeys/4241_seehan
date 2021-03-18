@@ -6,11 +6,10 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 17:59:21 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/08 17:33:44 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/14 19:15:54 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
 
 void			ft_putchar(char c)
@@ -71,16 +70,4 @@ void			ft_putnbr_base(int nbr, char *base)
 		ft_putnbr_base(value / len, base);
 		ft_putchar(base[value % len]);
 	}
-}
-
-int main(void)
-{
-	ft_putnbr_base(123, "0123456789");
-	printf("\n");
-	ft_putnbr_base(-10, "01");
-	printf("\n");
-	ft_putnbr_base(-2147483648, "0123456789abcdef");
-	printf("\n");
-	ft_putnbr_base(0, "0123456789abcdef");
-	return (0);
 }

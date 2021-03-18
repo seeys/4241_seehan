@@ -6,7 +6,7 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 17:37:04 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/06 17:37:34 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/09 16:56:57 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int		ft_strlen(char *str)
 
 	len = 0;
 	while (str[len])
-		++len;
+		len++;
 	return (len);
 }

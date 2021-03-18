@@ -6,11 +6,9 @@
 /*   By: seehan <seehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 23:38:21 by seehan            #+#    #+#             */
-/*   Updated: 2021/03/09 21:18:34 by seehan           ###   ########.fr       */
+/*   Updated: 2021/03/14 19:15:42 by seehan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 int		ft_recursive_power(int nb, int power)
 {
@@ -114,32 +112,4 @@ int		ft_atoi_base(char *str, char *base)
 		i++;
 	}
 	return (value * sign);
-}
-
-int 	main(void)
-{
-	printf("==== 21 ft_atoi_base ====\n");
-	printf("Tesing ex21\n");
-	printf("Should return 0 in case of invalid arguments\n");
-	printf("%d\n", ft_atoi_base("15", ""));
-	printf("%d\n", ft_atoi_base("15", "1"));
-	printf("%d\n", ft_atoi_base("15", "144"));
-	printf("%d\n", ft_atoi_base("15", "14+35"));
-	printf("%d\n", ft_atoi_base("15", "145-09"));
-	printf("%d\n", ft_atoi_base("", "14509"));
-	printf("%d\n", ft_atoi_base("x15", "14509"));
-	printf("Should print number in correct radix\n");
-	printf("%d\n", ft_atoi_base("+1111", "01"));
-	printf("%d\n", ft_atoi_base("+15", "0123456789"));
-	printf("%d\n", ft_atoi_base("+F", "0123456789ABCDEF"));
-	printf("%d\n", ft_atoi_base("+vi", "fivte3n"));
-	printf("%d\n", ft_atoi_base("+84", "9876543210"));
-	printf("Should handle negative numbers\n");
-	printf("%d\n", ft_atoi_base("-1111", "01"));
-	printf("%d\n", ft_atoi_base("-15", "0123456789"));
-	printf("%d\n", ft_atoi_base("-F", "0123456789ABCDEF"));
-	printf("%d\n", ft_atoi_base("-ve", "fivte3n"));
-	printf("%d\n", ft_atoi_base("-84", "9876543210"));
-	printf("All tests passed for ex21\n");
-	return (0);
 }
